@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    T-IA Copilot — Headless Demo Blueprint
+    T-IA Copilot - Headless Demo Blueprint
     GenAI Zürich Hackathon 2026
 
 .DESCRIPTION
