@@ -168,3 +168,4 @@ To maximize your efficiency with T-IA Connect, we have included the following:
 - **DevPost:** [T-IA Copilot on DevPost](https://devpost.com/software/t-ia-copilot-genai-for-industrial-plcs)
 - **Hackathon:** [GenAI Zürich 2026](https://genaizurich2026.devpost.com/)
 
+
