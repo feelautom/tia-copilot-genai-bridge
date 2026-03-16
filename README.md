@@ -44,7 +44,7 @@ Once connected, the AI gains access to 120+ TIA Portal capabilities, including:
 
 ### Prerequisites
 - **T-IA Connect** installed ([t-ia-connect.com](https://t-ia-connect.com))
-- **Siemens TIA Portal** V17, V18, V19 or V20
+- **Siemens TIA Portal** V17, V18, V19, V20 or V21
 - A TIA Portal project file (`.ap17` / `.ap18` / `.ap19` / `.ap20`)
 
 ### 1. Launch in Headless Mode
@@ -155,7 +155,7 @@ To maximize your efficiency with T-IA Connect, we have included the following:
 | Component | Technology |
 |-----------|-----------|
 | Backend | C# / .NET Framework 4.8 |
-| Target | Siemens TIA Portal V17-V20 (Openness API) |
+| Target | Siemens TIA Portal V17-V21 (Openness API) |
 | AI Models | Qwen3-Coder-30B via OVHcloud AI Endpoints |
 | Protocol | MCP (Model Context Protocol) by Anthropic |
 | API | REST + SignalR (real-time job notifications) |
@@ -167,5 +167,6 @@ To maximize your efficiency with T-IA Connect, we have included the following:
 - **Website:** [t-ia-connect.com](https://t-ia-connect.com)
 - **DevPost:** [T-IA Copilot on DevPost](https://devpost.com/software/t-ia-copilot-genai-for-industrial-plcs)
 - **Hackathon:** [GenAI Zürich 2026](https://genaizurich2026.devpost.com/)
+
 
 
