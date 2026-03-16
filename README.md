@@ -139,6 +139,18 @@ See [`examples/Run-Headless-Demo.ps1`](examples/Run-Headless-Demo.ps1) for a com
 
 ---
 
+---
+
+## Skills, Prompts, and Resources
+
+To maximize your efficiency with T-IA Connect, we have included the following:
+
+- **Skills (MCP Tools):** 120+ specialized tools to interact with TIA Portal (Blocks, Tags, HMI, PLC Simulation, etc.).
+- **[Prompts](./PROMPTS.md):** A guide to the best natural language prompts to generate industrial-grade PLC code.
+- **Resources:** T-IA Connect provides read-only access to your project structure via specialized resources, allowing the AI to "browse" your project tree without manual intervention.
+
+---
+
 ## Tech Stack
 | Component | Technology |
 |-----------|-----------|
@@ -155,3 +167,4 @@ See [`examples/Run-Headless-Demo.ps1`](examples/Run-Headless-Demo.ps1) for a com
 - **Website:** [t-ia-connect.com](https://t-ia-connect.com)
 - **DevPost:** [T-IA Copilot on DevPost](https://devpost.com/software/t-ia-copilot-genai-for-industrial-plcs)
 - **Hackathon:** [GenAI Zürich 2026](https://genaizurich2026.devpost.com/)
+
