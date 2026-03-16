@@ -17,7 +17,7 @@ This repository contains the **Generative AI bridging components** built specifi
 
 You can easily connect T-IA Connect to your favorite AI Assistant using the Model Context Protocol (MCP).
 
-Add the following configuration to your "claude_desktop_config.json":
+Add the following configuration to your claude_desktop_config.json:
 
 `json
 {
@@ -61,17 +61,17 @@ TiaPortalApi.App.exe --headless
 
 ### 2. Open a TIA Portal Project (silently)
 `powershell
-curl -X POST http://localhost:9000/api/projects/open `
-  -H "X-API-Key: your-key" `
-  -H "Content-Type: application/json" `
+curl -X POST http://localhost:9000/api/projects/open 
+  -H "X-API-Key: your-key" 
+  -H "Content-Type: application/json" 
   -d '{ "projectPath": "C:\\Projects\\WaterPlant.ap20" }'
 `
 
 ### 3. Generate a PLC Block from Natural Language
 `powershell
-curl -X POST http://localhost:9000/api/blocks/generate `
-  -H "X-API-Key: your-key" `
-  -H "Content-Type: application/json" `
+curl -X POST http://localhost:9000/api/blocks/generate 
+  -H "X-API-Key: your-key" 
+  -H "Content-Type: application/json" 
   -d '{
     "deviceName": "PLC_1",
     "blockType": "FB",
@@ -83,9 +83,9 @@ curl -X POST http://localhost:9000/api/blocks/generate `
 
 ### 4. Compile — Done
 `powershell
-curl -X POST http://localhost:9000/api/blocks/compile `
-  -H "X-API-Key: your-key" `
-  -H "Content-Type: application/json" `
+curl -X POST http://localhost:9000/api/blocks/compile 
+  -H "X-API-Key: your-key" 
+  -H "Content-Type: application/json" 
   -d '{ "deviceName": "PLC_1", "blockName": "FB_WaterPump" }'
 `
 
