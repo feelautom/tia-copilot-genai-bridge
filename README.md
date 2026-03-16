@@ -1,8 +1,10 @@
-# T-IA Copilot : GenAI Bridge for Siemens PLCs
+﻿# T-IA Copilot : GenAI Bridge for Siemens PLCs
 
 **Submission for the GenAI Zürich Hackathon 2026 — Siemens Challenge**
 
 > **Tagline:** Bridging LLMs and Siemens TIA Portal safely. Generates deterministic PLC logic (SCL/ISA-88) from natural language using Sovereign GenAI models.
+
+🚀 **Get started in 5 minutes!** Download the core engine at [t-ia-connect.com](https://t-ia-connect.com/) and enjoy a **14-day full-featured free trial**.
 
 ## About This Repository
 This repository contains the **Generative AI bridging components** built specifically during the hackathon.
@@ -11,15 +13,42 @@ This repository contains the **Generative AI bridging components** built specifi
 
 ---
 
-## Quick Start — Headless Blueprint
+## MCP Integration (Claude Desktop & Cursor)
+
+You can easily connect T-IA Connect to your favorite AI Assistant using the Model Context Protocol (MCP).
+
+Add the following configuration to your "claude_desktop_config.json":
+
+`json
+{
+  "mcpServers": {
+    "tia-connect": {
+      "command": "C:\\Program Files\\T-IA Connect\\TiaPortalApi.App.exe",
+      "args": ["--mcp"]
+    }
+  }
+}
+`
+
+### Key MCP Tools Available
+Once connected, the AI gains access to 120+ TIA Portal capabilities, including:
+- get_project_overview: Understand the entire PLC program structure instantly.
+- list_blocks / get_block_details: Explore specific folders, OBs, FBs, and FCs.
+- create_scl_block / import_scl_source: Inject AI-generated logic directly into your project.
+- compile_device: Trigger TIA compilation directly from the chat.
+- plcsim_start_simulation / plcsim_write_tag: Automate testing using PLCSim Advanced.
+
+---
+
+## Quick Start — Headless API Blueprint
 
 ### Prerequisites
 - **T-IA Connect** installed ([t-ia-connect.com](https://t-ia-connect.com))
 - **Siemens TIA Portal** V17, V18, V19 or V20
-- A TIA Portal project file (`.ap17` / `.ap18` / `.ap19` / `.ap20`)
+- A TIA Portal project file (.ap17 / .ap18 / .ap19 / .ap20)
 
 ### 1. Launch in Headless Mode
-```powershell
+`powershell
 # No GUI, no WPF window — just a REST API ready to receive commands
 TiaPortalApi.App.exe --headless
 
@@ -28,18 +57,18 @@ TiaPortalApi.App.exe --headless
 #   API: http://localhost:9000/
 #   Swagger: http://localhost:9000/swagger
 #   Press Ctrl+C to stop.
-```
+`
 
 ### 2. Open a TIA Portal Project (silently)
-```powershell
+`powershell
 curl -X POST http://localhost:9000/api/projects/open `
   -H "X-API-Key: your-key" `
   -H "Content-Type: application/json" `
   -d '{ "projectPath": "C:\\Projects\\WaterPlant.ap20" }'
-```
+`
 
 ### 3. Generate a PLC Block from Natural Language
-```powershell
+`powershell
 curl -X POST http://localhost:9000/api/blocks/generate `
   -H "X-API-Key: your-key" `
   -H "Content-Type: application/json" `
@@ -50,49 +79,49 @@ curl -X POST http://localhost:9000/api/blocks/generate `
     "description": "Water pump with Start/Stop, thermal fault (TON 5s), Manual/Auto mode",
     "language": "SCL"
   }'
-```
+`
 
 ### 4. Compile — Done
-```powershell
+`powershell
 curl -X POST http://localhost:9000/api/blocks/compile `
   -H "X-API-Key: your-key" `
   -H "Content-Type: application/json" `
   -d '{ "deviceName": "PLC_1", "blockName": "FB_WaterPump" }'
-```
+`
 
 > No TIA Portal window ever opened. The block is compiled and ready.
 
 ### Full Automated Script
-See [`examples/Run-Headless-Demo.ps1`](examples/Run-Headless-Demo.ps1) for a complete end-to-end script.
+See [examples/Run-Headless-Demo.ps1](examples/Run-Headless-Demo.ps1) for a complete end-to-end script.
 
 ---
 
 ## Architecture
 
-```
-┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   AI Agent       │     │  T-IA Connect    │     │  TIA Portal     │
-│  (Claude, etc.)  │────▶│  REST API        │────▶│  Openness API   │
-│                  │ MCP │  + Deterministic │     │  (headless)     │
-│  "Create a pump  │ or  │    XML Engine    │     │                 │
-│   sequence..."   │ HTTP│                  │     │  ┌───────────┐  │
-└─────────────────┘     └──────────────────┘     │  │ FB_Pump   │  │
-                                                  │  │ compiled  │  │
-                                                  │  └───────────┘  │
-                                                  └─────────────────┘
-```
+`	ext
+┌─────────────────┐     ┌──────────────────┐     ┌───────────────┐
+│   AI Agent      │     │  T-IA Connect    │     │  TIA Portal   │
+│  (Claude, etc.) │────▶│  REST API        │────▶│  Openness API │
+│                 │ MCP │  + Deterministic │     │  (headless)   │
+│  "Create a pump │ or  │    XML Engine    │     │               │
+│   sequence..."  │ HTTP│                  │     │  ┌─────────┐  │
+└─────────────────┘     └──────────────────┘     │  │ FB_Pump │  │        
+                                                 │  │ compiled│  │    
+                                                 │  └─────────┘  │
+                                                 └───────────────┘
+`
 
 ---
 
 ## Key Hackathon Components
 
-### 1. Sovereign AI Integration (`src/OpenAiProvider.cs`)
+### 1. Sovereign AI Integration (src/OpenAiProvider.cs)
 - Custom C# provider connecting to European-hosted AI models (OVHcloud AI Endpoints)
 - Ensures sensitive PLC logic never leaves the EU
-- Tested with `Qwen3-Coder-30B-Instruct` for precise SCL generation
+- Tested with Qwen3-Coder-30B-Instruct for precise SCL generation
 
-### 2. MCP Bridge E2E Tests (`tests/`)
-- Demonstrates headless WPF boot → TIA Portal silent open → MCP `tools/call` execution
+### 2. MCP Bridge E2E Tests (	ests/)
+- Demonstrates headless WPF boot → TIA Portal silent open → MCP 	ools/call execution
 - Full lifecycle orchestration without any user interaction
 
 ---
