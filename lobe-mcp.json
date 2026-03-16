@@ -1,0 +1,25 @@
+﻿{
+  "id": "tia-connect",
+  "name": "T-IA Connect (Siemens TIA Portal)",
+  "description": "Model Context Protocol (MCP) bridge to programmatically control Siemens TIA Portal. Generate SCL logic, explore project structures, and automate PLC/HMI tasks using AI assistants like LobeChat.",
+  "author": "feelautom",
+  "homepage": "https://t-ia-connect.com",
+  "keywords": [
+    "siemens",
+    "tia-portal",
+    "plc",
+    "mcp",
+    "automation",
+    "industrial-ia",
+    "scl"
+  ],
+  "mcpServers": {
+    "tia-connect": {
+      "command": "C:\\Program Files\\T-IA Connect\\TiaPortalApi.App.exe",
+      "args": ["--mcp"],
+      "env": {}
+    }
+  },
+  "version": "1.0.0",
+  "schemaVersion": 1
+}
